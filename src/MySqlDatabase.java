@@ -1,4 +1,4 @@
-public class MySqlDatabase implements Database {
+public class MySqlDatabase implements IDatabase {
     @Override
     public void saveStudentResult(Student student) {
     }
