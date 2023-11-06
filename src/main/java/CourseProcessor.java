@@ -1,12 +1,13 @@
 // Class to process students based on their courses and results
 public class CourseProcessor {
-    private StudentProcessor studentProcessor;
-    private IDatabase database;
+    StudentProcessor studentProcessor;
+    IDatabase database;
 
     // Constructor
     public CourseProcessor(IDatabase database, StudentProcessor studentProcessor) {
         this.database = database;
-        this.studentProcessor = studentProcessor;
+        // Decorando o studentProcessor com a funcionalidade de log
+        this.studentProcessor = new LoggingStudentProcessorDecorator(studentProcessor);
     }
 
     // Process a student based on their course type and results
@@ -17,7 +18,6 @@ public class CourseProcessor {
             System.out.println(student.getName() + " foi promovido para " + student.getCourseType());
         }
         database.saveStudentResult(student);
-
     }
     // Check if all subjects were passed
     private boolean allSubjectsPassed(Student student) {
