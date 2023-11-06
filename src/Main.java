@@ -4,10 +4,10 @@ public class Main {
 
         // Initialize the DatabaseFactory
         DatabaseFactory mySqlFactory = new MySqlDatabaseFactory();
-        IDatabase mySqlDatabase = mySqlFactory.createDatabase();
+        IDatabase mySqlDatabase = new LoggingDatabaseDecorator(mySqlFactory.createDatabase());
 
         DatabaseFactory mongoDbFactory = new MongoDBFactory();
-        IDatabase mongoDbDatabase = mongoDbFactory.createDatabase();
+        IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
         // Process a technical course student using MySQL
         Student technicalCourseStudent = new Student("John Lake", CourseType.TECHNICAL, new double[]{6.0, 8.0, 9.0});
