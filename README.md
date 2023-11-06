@@ -1,9 +1,9 @@
-### Projeto matéria de Padrões de Projeto
+# Projeto matéria de Padrões de Projeto
 ## Participantes:
-# João Pedro Meira Messias
-# Gabriel Rossa
-# Gustavo Guedes
-# Milena Schrickte
+### João Pedro Meira Messias
+### Gabriel Rossa
+### Gustavo Guedes
+### Milena Schrickte
 
 
 ## Instruções para uso dos bancos de dados
@@ -15,7 +15,7 @@ de inicialização ou manualmente usando ferramentas de administração de banco
 No caso indicamos que para o database MySql seja feito direto no Workbench ou no terminal sql e para o MongoDb seja
 usado o MongoDB Compass.
 
-# MySQL
+### MySQL
 Dentro do MySQL Workbench
 1. Criar database com nome university 
 "CREATE DATABASE university;"
@@ -36,7 +36,7 @@ FLUSH PRIVILEGES;"
    concepts VARCHAR(255)
 );"
 
-# MongoDB
+### MongoDB
 Dentro do MongoDB
 
 1. Criar database com nome "university"
