@@ -1,4 +1,3 @@
-
 public class BachelorsCourseSubjectChecker implements CourseSubjectChecker {
     @Override
     public boolean allSubjectsPassed(Student student) {

@@ -3,14 +3,14 @@ import java.util.List;
 public class Student {
     private String name;
     private CourseType courseType;
-    private double[] grades;
+    private Double[] grades;
     private String[] concepts;
     private List<String> subjects = new ArrayList<>();
 
     public List<String> getSubjects() { return subjects; }
 
     // Constructor for technical and bachelor courses
-    public Student(String name, CourseType courseType, double[] grades) {
+    public Student(String name, CourseType courseType, Double[] grades) {
         this.name = name;
         this.courseType = courseType;
         this.grades = grades;
@@ -44,6 +44,6 @@ public class Student {
     // Getters
     public String getName() { return name; }
     public CourseType getCourseType() { return courseType; }
-    public double[] getGrades() { return grades; }
+    public Double[] getGrades() { return grades; }
     public String[] getConcepts() { return concepts; }
 }

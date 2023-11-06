@@ -3,5 +3,4 @@ public class MySqlDatabaseFactory extends DatabaseFactory {
     public IDatabase createDatabase() {
         return new MySqlDatabase();
     }
-
 }
