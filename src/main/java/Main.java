@@ -10,7 +10,9 @@ public class Main {
         IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
         // Process a technical course student using MySQL
-        Student technicalCourseStudent = new Student("John Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
+//        Student technicalCourseStudent = new Student("John Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
+
+        Student technicalCourseStudent = new Student("Mary Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
 
         // Create processor that handle students grades
         StudentProcessor technicalCourseProcessor = new TechnicalCourseProcessor();
@@ -22,7 +24,7 @@ public class Main {
         courseProcessorMySql.processStudent(technicalCourseStudent);
 
         // Process a master's degree student using MongoDB.MongoDB
-        Student mastersDegreeStudent = new Student("Jane Doe", CourseType.MASTERS, new String[]{"A", "B", "C"});
+        Student mastersDegreeStudent = new Student("John Doe", CourseType.MASTERS, new String[]{"A", "B", "C"});
         StudentProcessor masterCourseProcessor = new MastersCourseProcessor();
         CourseProcessor courseProcessorMongoDB = new CourseProcessor(mongoDbDatabase, masterCourseProcessor);
         courseProcessorMongoDB.processStudent(mastersDegreeStudent);

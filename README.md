@@ -28,7 +28,7 @@ FLUSH PRIVILEGES;"
 "USE university"
 
 4. criar tabela com os atributos a serem armazendos
-"CREATE TABLE IF NOT EXISTS student (
+"CREATE TABLE IF NOT EXISTS students (
    id INT AUTO_INCREMENT PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    course_type VARCHAR(20) NOT NULL,
