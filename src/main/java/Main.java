@@ -3,10 +3,10 @@ public class Main {
     public static void main(String[] args) {
 
         // Initialize the DatabaseFactory
-        DatabaseFactory mySqlFactory = new MySqlDatabaseFactory();
+        DatabaseFactory mySqlFactory = DatabaseFactory.getMySQLInstance();
         IDatabase mySqlDatabase = new LoggingDatabaseDecorator(mySqlFactory.createDatabase());
 
-        DatabaseFactory mongoDbFactory = new MongoDBFactory();
+        DatabaseFactory mongoDbFactory = DatabaseFactory.getMongoDBInstance();
         IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
         // Process a technical course student using MySQL
