@@ -1,11 +1,10 @@
-// Class to process students based on their courses and results
 public class CourseProcessor {
     StudentProcessor studentProcessor;
     IDatabase database;
 
-    // Constructor
     public CourseProcessor(IDatabase database, StudentProcessor studentProcessor) {
         this.database = database;
+
         // Decorando o studentProcessor com a funcionalidade de log
         this.studentProcessor = new LoggingStudentProcessorDecorator(studentProcessor);
     }
@@ -19,6 +18,7 @@ public class CourseProcessor {
         }
         database.saveStudentResult(student);
     }
+
     // Check if all subjects were passed
     private boolean allSubjectsPassed(Student student) {
         CourseSubjectChecker subjectChecker = getSubjectChecker(student);
@@ -30,7 +30,7 @@ public class CourseProcessor {
             case TECHNICAL:
                 return new TechnicalCourseSubjectChecker();
             case BACHELORS:
-                return new BachelorsCourseSubjectChecker();
+                return BachelorsCourseSubjectChecker.getInstance(); // Usando o Singleton aqui
             case MASTERS:
                 return new MastersCourseSubjectChecker();
             default:

@@ -1,4 +1,3 @@
-// Main class to demonstrate functionality
 public class Main {
     public static void main(String[] args) {
 
@@ -10,24 +9,21 @@ public class Main {
         IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
         // Process a technical course student using MySQL
-//        Student technicalCourseStudent = new Student("John Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
-
         Student technicalCourseStudent = new Student("Mary Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
 
-        // Create processor that handle students grades
+        // Create a processor that handles students' grades
         StudentProcessor technicalCourseProcessor = new TechnicalCourseProcessor();
 
-        // inject sql dependency to save in my sql database
+        // Inject SQL dependency to save in the MySQL database
         CourseProcessor courseProcessorMySql = new CourseProcessor(mySqlDatabase, technicalCourseProcessor);
 
-        // process student grades using injected processor
+        // Process student grades using the injected processor
         courseProcessorMySql.processStudent(technicalCourseStudent);
 
-        // Process a master's degree student using MongoDB.MongoDB
+        // Process a master's degree student using MongoDB
         Student mastersDegreeStudent = new Student("John Doe", CourseType.MASTERS, new String[]{"A", "B", "C"});
         StudentProcessor masterCourseProcessor = new MastersCourseProcessor();
         CourseProcessor courseProcessorMongoDB = new CourseProcessor(mongoDbDatabase, masterCourseProcessor);
         courseProcessorMongoDB.processStudent(mastersDegreeStudent);
-
     }
 }

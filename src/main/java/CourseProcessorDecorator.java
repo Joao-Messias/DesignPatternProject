@@ -1,8 +1,8 @@
 public abstract class CourseProcessorDecorator extends CourseProcessor {
     protected CourseProcessor decoratedCourseProcessor;
 
-    public CourseProcessorDecorator(CourseProcessor decoratedCourseProcessor) {
-        super(decoratedCourseProcessor.database, decoratedCourseProcessor.studentProcessor);
+    public CourseProcessorDecorator(IDatabase database, StudentProcessor studentProcessor, CourseProcessor decoratedCourseProcessor) {
+        super(database, studentProcessor);
         this.decoratedCourseProcessor = decoratedCourseProcessor;
     }
 
