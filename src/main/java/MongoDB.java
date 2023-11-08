@@ -19,15 +19,25 @@ public class MongoDB implements IDatabase {
                     .append("courseType", student.getCourseType().toString());
 
             if (student.getCourseType() == CourseType.MASTERS) {
-                List<String> conceptsList = Arrays.asList(student.getConcepts());
-                document.append("concepts", conceptsList);
+                String[] concepts = student.getConcepts();
+                if (concepts != null) {
+                    List<String> conceptsList = Arrays.asList(concepts);
+                    document.append("concepts", conceptsList);
+                }
             } else {
-                document.append("grades", student.getGrades());
+                Double[] grades = student.getGrades();
+                if (grades != null) {
+                    document.append("grades", Arrays.asList(grades));
+                }
             }
 
-            document.append("subjects", student.getSubjects());
+            String[] subjects = student.getSubjects().toArray(new String[0]);
+            document.append("subjects", Arrays.asList(subjects));
 
             collection.insertOne(document);
+        } catch (NullPointerException npe) {
+            System.err.println("Um valor nulo foi encontrado ao tentar salvar os resultados do estudante.");
+            npe.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
