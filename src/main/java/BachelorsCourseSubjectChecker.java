@@ -1,9 +1,9 @@
 public class BachelorsCourseSubjectChecker implements CourseSubjectChecker {
     private static BachelorsCourseSubjectChecker instance;
 
-    private BachelorsCourseSubjectChecker() {
-        // Construtor privado para evitar a criação de instâncias adicionais.
-    }
+//    private BachelorsCourseSubjectChecker() {
+//        // Construtor privado para evitar a criação de instâncias adicionais.
+//    }
 
     public static BachelorsCourseSubjectChecker getInstance() {
         if (instance == null) {

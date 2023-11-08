@@ -30,7 +30,8 @@ public class CourseProcessor {
             return new TechnicalCourseSubjectChecker();
         }
         if (student.getCourseType() == CourseType.BACHELORS) {
-            return BachelorsCourseSubjectChecker.getInstance(); // Usando o Singleton aqui
+//            return BachelorsCourseSubjectChecker.getInstance(); // Usando o Singleton aqui
+            return new BachelorsCourseSubjectChecker();
         }
         if (student.getCourseType() == CourseType.MASTERS) {
             return new MastersCourseSubjectChecker();

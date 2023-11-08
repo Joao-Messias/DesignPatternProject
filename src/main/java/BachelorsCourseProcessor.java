@@ -2,7 +2,7 @@ public class BachelorsCourseProcessor implements StudentProcessor {
     private CourseSubjectChecker checker;
 
     public BachelorsCourseProcessor() {
-        BachelorsCourseSubjectChecker.getInstance();
+        this.checker = new BachelorsCourseSubjectChecker();
     }
     @Override
     public void processStudent(Student student) {
