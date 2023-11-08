@@ -19,7 +19,7 @@ public class Main {
         CourseProcessor courseProcessorMySqlMasters = new CourseProcessor(mySqlDatabase, mastersProcessor);
         courseProcessorMySqlMasters.processStudent(mastersStudent);
 
-        Student bachelorsStudent = new Student("Jane Smith", new Double[]{7.0, 8.5, 9.0});
+        Student bachelorsStudent = new Student("Jane Smith", new String[]{"A", "B", "C"});
         new BachelorsCourseDecorator(bachelorsStudent);
         StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor();
         CourseProcessor courseProcessorMongoDbBachelors = new CourseProcessor(mongoDbDatabase, bachelorsProcessor);

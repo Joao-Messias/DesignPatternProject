@@ -16,9 +16,8 @@ public class Student {
     }
 
     // Constructor for master's degree courses
-    public Student(String name, CourseType courseType, String[] concepts) {
+    public Student(String name, String[] concepts) {
         this.name = name;
-        this.courseType = courseType;
         this.concepts = concepts;
     }
 
