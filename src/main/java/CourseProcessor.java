@@ -26,15 +26,15 @@ public class CourseProcessor {
     }
 
     private CourseSubjectChecker getSubjectChecker(Student student) {
-        switch (student.getCourseType()) {
-            case TECHNICAL:
-                return new TechnicalCourseSubjectChecker();
-            case BACHELORS:
-                return BachelorsCourseSubjectChecker.getInstance(); // Usando o Singleton aqui
-            case MASTERS:
-                return new MastersCourseSubjectChecker();
-            default:
-                throw new IllegalArgumentException("Invalid course type");
+        if (student.getCourseType() == CourseType.TECHNICAL) {
+            return new TechnicalCourseDecorator(new TechnicalCourseSubjectChecker());
         }
+        if (student.getCourseType() == CourseType.BACHELORS) {
+            return new BachelorsCourseDecorator(BachelorsCourseSubjectChecker.getInstance());
+        }
+        if (student.getCourseType() == CourseType.MASTERS) {
+            return new MastersCourseDecorator(new MastersCourseSubjectChecker());
+        }
+        throw new IllegalArgumentException("Invalid course type");
     }
 }

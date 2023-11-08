@@ -10,19 +10,21 @@ public class Main {
 
         // Process a technical course student using MySQL
         Student technicalCourseStudent = new Student("Mary Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
-
-        // Create a processor that handles students' grades
-        StudentProcessor technicalCourseProcessor = new TechnicalCourseProcessor();
-
-        // Inject SQL dependency to save in the MySQL database
+        CourseSubjectChecker technicalChecker = new TechnicalCourseDecorator(new TechnicalCourseSubjectChecker());
+        StudentProcessor technicalCourseProcessor = new TechnicalCourseProcessor(technicalChecker);
         CourseProcessor courseProcessorMySql = new CourseProcessor(mySqlDatabase, technicalCourseProcessor);
-
-        // Process student grades using the injected processor
         courseProcessorMySql.processStudent(technicalCourseStudent);
+
+        // Process a bachelor's degree student using MySQL
+        Student bachelorsStudent = new Student("Jane Smith", CourseType.BACHELORS, new Double[]{5.5, 9.0, 7.0});
+        CourseSubjectChecker bachelorsChecker = new BachelorsCourseDecorator(BachelorsCourseSubjectChecker.getInstance());
+        StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor(bachelorsChecker);
+        courseProcessorMySql.processStudent(bachelorsStudent);
 
         // Process a master's degree student using MongoDB
         Student mastersDegreeStudent = new Student("John Doe", CourseType.MASTERS, new String[]{"A", "B", "C"});
-        StudentProcessor masterCourseProcessor = new MastersCourseProcessor();
+        CourseSubjectChecker mastersChecker = new MastersCourseDecorator(new MastersCourseSubjectChecker());
+        StudentProcessor masterCourseProcessor = new MastersCourseProcessor(mastersChecker);
         CourseProcessor courseProcessorMongoDB = new CourseProcessor(mongoDbDatabase, masterCourseProcessor);
         courseProcessorMongoDB.processStudent(mastersDegreeStudent);
     }

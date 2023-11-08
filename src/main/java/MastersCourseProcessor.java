@@ -1,12 +1,16 @@
 public class MastersCourseProcessor implements StudentProcessor {
+    private CourseSubjectChecker checker;
+
+    public MastersCourseProcessor(CourseSubjectChecker checker) {
+        this.checker = checker;
+    }
+
     @Override
     public void processStudent(Student student) {
-        for (String concept : student.getConcepts()) {
-            if ("D".equals(concept)) {
-                System.out.println(student.getName() + " foi descredenciado do Curso de Mestrado devido ao conceito D.");
-                return;
-            }
+        if (checker.allSubjectsPassed(student)) {
+            System.out.println(student.getName() + " foi mantido no programa de Mestrado.");
+        } else {
+            System.out.println(student.getName() + " foi descredenciado do Curso de Mestrado devido ao conceito D.");
         }
-        System.out.println(student.getName() + " foi mantido no programa de Mestrado.");
     }
 }
