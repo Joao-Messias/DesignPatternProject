@@ -12,11 +12,20 @@ public class CourseProcessor {
     // Process a student based on their course type and results
     public void processStudent(Student student) {
         studentProcessor.processStudent(student);
+        // Salva o resultado no banco de dados antes de promover o estudante
+        database.saveStudentResult(student);
+
+        var courseTypeBefore = student.getCourseType();
         if (allSubjectsPassed(student)) {
             student.promoteCourseType();
-            System.out.println(student.getName() + " foi promovido para " + student.getCourseType());
+            if (courseTypeBefore == student.getCourseType()) {
+                System.out.println(student.getName() + " já está no último nível de estudos!");
+            } else if (student.getCourseType() == CourseType.MASTERS) {
+                System.out.println(student.getName() + " foi para o último nível de estudos! Parabéns! Foi promovido de " + courseTypeBefore + " para " + student.getCourseType());
+            } else {
+                System.out.println(student.getName() + " foi promovido de " + courseTypeBefore + " para " + student.getCourseType());
+            }
         }
-        database.saveStudentResult(student);
     }
 
     // Check if all subjects were passed
