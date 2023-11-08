@@ -1,6 +1,7 @@
 public class MastersCourseDecorator extends CourseDecorator {
     public MastersCourseDecorator(Student student) {
         super(student);
+        setCourseType();
     }
 
     @Override
