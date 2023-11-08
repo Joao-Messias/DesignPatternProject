@@ -1,10 +1,6 @@
 public class TechnicalCourseProcessor implements StudentProcessor {
     private CourseSubjectChecker checker;
 
-    public TechnicalCourseProcessor(CourseSubjectChecker checker) {
-        this.checker = checker;
-    }
-
     @Override
     public void processStudent(Student student) {
         if (checker.allSubjectsPassed(student)) {

@@ -10,9 +10,8 @@ public class Student {
     public List<String> getSubjects() { return subjects; }
 
     // Constructor for technical and bachelor courses
-    public Student(String name, CourseType courseType, Double[] grades) {
+    public Student(String name, Double[] grades) {
         this.name = name;
-        this.courseType = courseType;
         this.grades = grades;
     }
 
@@ -46,4 +45,8 @@ public class Student {
     public CourseType getCourseType() { return courseType; }
     public Double[] getGrades() { return grades; }
     public String[] getConcepts() { return concepts; }
+
+    protected void setCourseType(CourseType courseType) {
+        this.courseType = courseType;
+    }
 }

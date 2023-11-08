@@ -1,32 +1,28 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Initialize the DatabaseFactory
         DatabaseFactory mySqlFactory = DatabaseFactory.getMySQLInstance();
         IDatabase mySqlDatabase = new LoggingDatabaseDecorator(mySqlFactory.createDatabase());
 
         DatabaseFactory mongoDbFactory = DatabaseFactory.getMongoDBInstance();
         IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
-        // Process a technical course student using MySQL
-        Student technicalCourseStudent = new Student("Mary Lake", CourseType.TECHNICAL, new Double[]{6.0, 8.0, 9.0});
-        CourseSubjectChecker technicalChecker = new TechnicalCourseDecorator(new TechnicalCourseSubjectChecker());
-        StudentProcessor technicalCourseProcessor = new TechnicalCourseProcessor(technicalChecker);
-        CourseProcessor courseProcessorMySql = new CourseProcessor(mySqlDatabase, technicalCourseProcessor);
-        courseProcessorMySql.processStudent(technicalCourseStudent);
+        Student technicalStudent = new Student("Mary Lake", new Double[]{6.0, 8.0, 9.0});
+        new TechnicalCourseDecorator(technicalStudent);
+        StudentProcessor technicalProcessor = new TechnicalCourseProcessor();
+        CourseProcessor courseProcessorMySqlTechnical = new CourseProcessor(mySqlDatabase, technicalProcessor);
+        courseProcessorMySqlTechnical.processStudent(technicalStudent);
 
-        // Process a bachelor's degree student using MySQL
-        Student bachelorsStudent = new Student("Jane Smith", CourseType.BACHELORS, new Double[]{5.5, 9.0, 7.0});
-        CourseSubjectChecker bachelorsChecker = new BachelorsCourseDecorator(BachelorsCourseSubjectChecker.getInstance());
-        StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor(bachelorsChecker);
-        courseProcessorMySql = new CourseProcessor(mySqlDatabase, bachelorsProcessor);
-        courseProcessorMySql.processStudent(bachelorsStudent);
+        Student mastersStudent = new Student("John Doe", new Double[]{5.0, 7.0, 8.0});
+        new MastersCourseDecorator(mastersStudent);
+        StudentProcessor mastersProcessor = new MastersCourseProcessor();
+        CourseProcessor courseProcessorMySqlMasters = new CourseProcessor(mySqlDatabase, mastersProcessor);
+        courseProcessorMySqlMasters.processStudent(mastersStudent);
 
-        // Process a master's degree student using MongoDB
-        Student mastersDegreeStudent = new Student("John Doe", CourseType.MASTERS, new String[]{"A", "B", "C"});
-        CourseSubjectChecker mastersChecker = new MastersCourseDecorator(new MastersCourseSubjectChecker());
-        StudentProcessor masterCourseProcessor = new MastersCourseProcessor(mastersChecker);
-        CourseProcessor courseProcessorMongoDB = new CourseProcessor(mongoDbDatabase, masterCourseProcessor);
-        courseProcessorMongoDB.processStudent(mastersDegreeStudent);
+        Student bachelorsStudent = new Student("Jane Smith", new Double[]{7.0, 8.5, 9.0});
+        new BachelorsCourseDecorator(bachelorsStudent);
+        StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor();
+        CourseProcessor courseProcessorMySqlBachelors = new CourseProcessor(mySqlDatabase, bachelorsProcessor);
+        courseProcessorMySqlBachelors.processStudent(bachelorsStudent);
     }
 }

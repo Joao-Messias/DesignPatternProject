@@ -27,13 +27,13 @@ public class CourseProcessor {
 
     private CourseSubjectChecker getSubjectChecker(Student student) {
         if (student.getCourseType() == CourseType.TECHNICAL) {
-            return new TechnicalCourseDecorator(new TechnicalCourseSubjectChecker());
+            return new TechnicalCourseSubjectChecker();
         }
         if (student.getCourseType() == CourseType.BACHELORS) {
-            return new BachelorsCourseDecorator(BachelorsCourseSubjectChecker.getInstance());
+            return BachelorsCourseSubjectChecker.getInstance(); // Usando o Singleton aqui
         }
         if (student.getCourseType() == CourseType.MASTERS) {
-            return new MastersCourseDecorator(new MastersCourseSubjectChecker());
+            return new MastersCourseSubjectChecker();
         }
         throw new IllegalArgumentException("Invalid course type");
     }
