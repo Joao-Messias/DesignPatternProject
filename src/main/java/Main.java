@@ -19,6 +19,7 @@ public class Main {
         Student bachelorsStudent = new Student("Jane Smith", CourseType.BACHELORS, new Double[]{5.5, 9.0, 7.0});
         CourseSubjectChecker bachelorsChecker = new BachelorsCourseDecorator(BachelorsCourseSubjectChecker.getInstance());
         StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor(bachelorsChecker);
+        courseProcessorMySql = new CourseProcessor(mySqlDatabase, bachelorsProcessor);
         courseProcessorMySql.processStudent(bachelorsStudent);
 
         // Process a master's degree student using MongoDB
