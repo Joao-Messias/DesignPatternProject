@@ -1,6 +1,9 @@
 public class BachelorsCourseProcessor implements StudentProcessor {
     private CourseSubjectChecker checker;
 
+    public BachelorsCourseProcessor() {
+        BachelorsCourseSubjectChecker.getInstance();
+    }
     @Override
     public void processStudent(Student student) {
         if (checker.allSubjectsPassed(student)) {
