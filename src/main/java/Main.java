@@ -7,22 +7,43 @@ public class Main {
         DatabaseFactory mongoDbFactory = DatabaseFactory.getMongoDBInstance();
         IDatabase mongoDbDatabase = new LoggingDatabaseDecorator(mongoDbFactory.createDatabase());
 
-        Student technicalStudent = new Student("Mary Lake", new Double[]{6.0, 8.0, 9.0});
-        new TechnicalCourseDecorator(technicalStudent);
-        StudentProcessor technicalProcessor = new TechnicalCourseProcessor();
-        CourseProcessor courseProcessorMySqlTechnical = new CourseProcessor(mySqlDatabase, technicalProcessor);
-        courseProcessorMySqlTechnical.processStudent(technicalStudent);
+        // MYSQL
+        Student technicalStudentMysql = new Student("João MySql A", new Double[]{6.0, 8.0, 9.0});
+        new TechnicalCourseDecorator(technicalStudentMysql);
+        StudentProcessor technicalProcessorMySql = new TechnicalCourseProcessor();
+        CourseProcessor courseProcessorMySqlTechnical = new CourseProcessor(mySqlDatabase, technicalProcessorMySql);
+        courseProcessorMySqlTechnical.processStudent(technicalStudentMysql);
 
-        Student mastersStudent = new Student("John Doe", new String[]{"A", "B", "C"});
-        new MastersCourseDecorator(mastersStudent);
-        StudentProcessor mastersProcessor = new MastersCourseProcessor();
-        CourseProcessor courseProcessorMySqlMasters = new CourseProcessor(mySqlDatabase, mastersProcessor);
-        courseProcessorMySqlMasters.processStudent(mastersStudent);
+        Student mastersStudentMysql = new Student("João MySql B", new String[]{"A", "B", "C"});
+        new MastersCourseDecorator(mastersStudentMysql);
+        StudentProcessor mastersProcessorMysql = new MastersCourseProcessor();
+        CourseProcessor courseProcessorMySqlMasters = new CourseProcessor(mySqlDatabase, mastersProcessorMysql);
+        courseProcessorMySqlMasters.processStudent(mastersStudentMysql);
 
-        Student bachelorsStudent = new Student("Jane Smith", new Double[]{6.0, 7.0, 8.0});
-        new BachelorsCourseDecorator(bachelorsStudent);
-        StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor();
-        CourseProcessor courseProcessorMongoDbBachelors = new CourseProcessor(mongoDbDatabase, bachelorsProcessor);
-        courseProcessorMongoDbBachelors.processStudent(bachelorsStudent);
+        Student bachelorsStudentMysql = new Student("João MySql C", new Double[]{6.0, 7.0, 8.0});
+        new BachelorsCourseDecorator(bachelorsStudentMysql);
+        StudentProcessor bachelorsProcessorMySql = new BachelorsCourseProcessor();
+        CourseProcessor courseProcessorMySqlBachelors = new CourseProcessor(mySqlDatabase, bachelorsProcessorMySql);
+        courseProcessorMySqlBachelors.processStudent(bachelorsStudentMysql);
+
+
+        // MONGODB
+        Student technicalStudentMongoDb = new Student("João Mongo A", new Double[]{6.0, 8.0, 9.0});
+        new TechnicalCourseDecorator(technicalStudentMongoDb);
+        StudentProcessor technicalProcessorMongoDB = new TechnicalCourseProcessor();
+        CourseProcessor courseProcessorMongoDbTechnical = new CourseProcessor(mongoDbDatabase, technicalProcessorMongoDB);
+        courseProcessorMongoDbTechnical.processStudent(technicalStudentMongoDb);
+
+        Student mastersStudentMongoDb = new Student("João Mongo B", new String[]{"A", "B", "C"});
+        new MastersCourseDecorator(mastersStudentMongoDb);
+        StudentProcessor mastersProcessorMongoDB = new MastersCourseProcessor();
+        CourseProcessor courseProcessorMongoDbMasters = new CourseProcessor(mongoDbDatabase, mastersProcessorMongoDB);
+        courseProcessorMongoDbMasters.processStudent(mastersStudentMongoDb);
+
+        Student bachelorsStudentMongoDb = new Student("João Mongo C", new Double[]{6.0, 7.0, 8.0});
+        new BachelorsCourseDecorator(bachelorsStudentMongoDb);
+        StudentProcessor bachelorsProcessorMongoDB = new BachelorsCourseProcessor();
+        CourseProcessor courseProcessorMongoDbBachelors = new CourseProcessor(mongoDbDatabase, bachelorsProcessorMongoDB);
+        courseProcessorMongoDbBachelors.processStudent(bachelorsStudentMongoDb);
     }
 }
