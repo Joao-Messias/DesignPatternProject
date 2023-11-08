@@ -22,7 +22,7 @@ public class Main {
         Student bachelorsStudent = new Student("Jane Smith", new Double[]{7.0, 8.5, 9.0});
         new BachelorsCourseDecorator(bachelorsStudent);
         StudentProcessor bachelorsProcessor = new BachelorsCourseProcessor();
-        CourseProcessor courseProcessorMySqlBachelors = new CourseProcessor(mySqlDatabase, bachelorsProcessor);
-        courseProcessorMySqlBachelors.processStudent(bachelorsStudent);
+        CourseProcessor courseProcessorMongoDbBachelors = new CourseProcessor(mongoDbDatabase, bachelorsProcessor);
+        courseProcessorMongoDbBachelors.processStudent(bachelorsStudent);
     }
 }
